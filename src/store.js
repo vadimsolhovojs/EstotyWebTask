@@ -11,10 +11,13 @@ export const filterByVersion = writable(FILTER_DEFAULT)
 export const filterByCountry = writable(FILTER_DEFAULT)
 
 // Counters
-const versionCounts = writable({})
-const countryCounts = writable({})
+// const versionCounts = writable({})
+// const countryCounts = writable({})
 
-const gamesSort = (a, b) => a.name.localeCompare(b.name);
+const gamesSort = (a, b) => 
+    a.name.localeCompare(b.name);
+const versionSort = (a, b) => 
+    a.app_ver.localeCompare(b.app_ver);
 
 export const gamesList = derived(gamesData, ($gamesData) => {
     if ($gamesData.length) {
@@ -38,9 +41,24 @@ export const gamesSelectItems = derived(gamesList, ($gamesList) => {
     return []
 })
 
+export const versionSelectItems = derived(retentionData, ($retentionData) => {
+    if ($retentionData.length) {
+        const result = [{ value: FILTER_DEFAULT, label: 'All' }]
+        for (const game of $retentionData) {
+            result.push({
+                value: game.app_id,
+                label: game.app_ver,
+            })
+        }
+        return result
+    }
+    
+    return []
+})
+
 export const filteredRetention = derived(
-    [retentionData, filterById, filterByVersion, filterByCountry, versionCounts, countryCounts],
-    ([$retentionData, $filterById, $filterByVersion, $filterByCountry, $versionCounts, $countryCounts]) => {
+    [retentionData, filterById, filterByVersion, filterByCountry],
+    ([$retentionData, $filterById, $filterByVersion, $filterByCountry]) => {
         let filteredData = $retentionData
 
         if ($filterById !== FILTER_DEFAULT) {
@@ -58,34 +76,42 @@ export const filteredRetention = derived(
                 item.country === $filterByCountry);
         }
 
-        // console.table(new Set(filteredData.map(item => item.app_ver)))     
-        const versions = {}
-    const countries = {}
-
-    filteredData.map(item => {
-		const versionRes = (versions[item.app_ver] || 0) + item.days[0]
-        const countryRes = (countries[item.country] || 0) + item.days[0]
-
-        versions[item.app_ver] = versionRes
-        countries[item.country] = countryRes
-    })
-
-    // versionCounts.set(versions)
-    // countryCounts.set(countries)
-
-    console.log('WTF',$versionCounts, $countryCounts)
-
         return filteredData;
 })
 
+export const versionCounts = derived(
+    [filteredRetention], 
+    ([$filteredRetention]) => {
+    const versions = {}
+    $filteredRetention.forEach(item => {
+		const versionRes = (versions[item.app_ver] || 0) + item.days[0]
+    
+        versions[item.app_ver] = versionRes
+    })
+    
+    return Object.entries(versions)
+})
+
+export const countryCounts = derived(
+    [filteredRetention], 
+    ([$filteredRetention]) => {
+    const countries = {}
+    $filteredRetention.forEach(item => {
+        const countryRes = (countries[item.country] || 0) + item.days[0]
+
+    countries[item.country] = countryRes
+    })
+    
+    return Object.entries(countries)
+})
 // export const test = derived([filteredRetention, versionCounts, countryCounts], 
 //     ($filteredRetention, $versionCounts, $countryCounts) => {
     
 //     console.log('WTF',$countryCounts)
 // })
 
-export const versionSelectItems = derived(
-    [versionCounts],
-    ([$versionCounts]) => {
-    console.log('VERSION COUNTS', $versionCounts)
-})
+// export const versionSelectItems = derived(
+//     [versionCounts],
+//     ([$versionCounts]) => {
+//     console.log('VERSION COUNTS', $versionCounts)
+// })

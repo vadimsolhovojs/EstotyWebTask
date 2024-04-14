@@ -8,6 +8,8 @@
 		filteredRetention,
 		filterByVersion,
 		filterByCountry,
+		versionCounts,
+		countryCounts
 		// versionSelectItems,
 		// test
 	} from './store'
@@ -36,79 +38,79 @@
 		})
 	})
 
-	const data = [
-    {app_id: '3', app_ver: '1.0.0', country: 'Nauru', days: [10, 5, 2]},
-    {app_id: '1', app_ver: '1.0.0', country: 'Samoa', days: [5, 3, 6]},
-    {app_id: '1', app_ver: '2.0.0', country: 'Nauru', days: [20, 30, 3]},
-	{app_id: '1', app_ver: '2.0.0', country: 'Samoa', days: [35, 30, 3]},
-	{app_id: '3', app_ver: '4.0.0', country: 'Latvia', days: [69, 30, 3]},
-	{app_id: '3', app_ver: '6.0.0', country: 'Latvia', days: [100, 30, 3]},
-	{app_id: '3', app_ver: '4.0.0', country: 'Samoa', days: [44, 30, 3]},
-]
+// 	const data = [
+//     {app_id: '3', app_ver: '1.0.0', country: 'Nauru', days: [10, 5, 2]},
+//     {app_id: '1', app_ver: '1.0.0', country: 'Samoa', days: [5, 3, 6]},
+//     {app_id: '1', app_ver: '2.0.0', country: 'Nauru', days: [20, 30, 3]},
+// 	{app_id: '1', app_ver: '2.0.0', country: 'Samoa', days: [35, 30, 3]},
+// 	{app_id: '3', app_ver: '4.0.0', country: 'Latvia', days: [69, 30, 3]},
+// 	{app_id: '3', app_ver: '6.0.0', country: 'Latvia', days: [100, 30, 3]},
+// 	{app_id: '3', app_ver: '4.0.0', country: 'Samoa', days: [44, 30, 3]},
+// ]
 
 // Filter function
-function filterData(appId, selectedAppVer, selectedCountry) {
+// function filterData(appId, selectedAppVer, selectedCountry) {
 	
-    let filteredData = data
+//     let filteredData = data
 
-	if (appId !== 'All') {
-		filteredData = data.filter(item => item.app_id === appId);
-	}
+// 	if (appId !== 'All') {
+// 		filteredData = data.filter(item => item.app_id === appId);
+// 	}
 
-    if (selectedAppVer !== 'All') {
-        filteredData = filteredData.filter(item => item.app_ver === selectedAppVer);
-    }
+//     if (selectedAppVer !== 'All') {
+//         filteredData = filteredData.filter(item => item.app_ver === selectedAppVer);
+//     }
 
-    if (selectedCountry !== 'All') {
-        filteredData = filteredData.filter(item => item.country === selectedCountry);
-    }
+//     if (selectedCountry !== 'All') {
+//         filteredData = filteredData.filter(item => item.country === selectedCountry);
+//     }
 
-	console.log('FILTER', filteredData)
+// 	console.log('FILTER', filteredData)
 
-    return filteredData;
-}
+//     return filteredData;
+// }
 
 // Function to display filtered data
-function displayFilteredData(filteredData) {
-    const versionCounts = {};
-    const countryCounts = {};
+// function displayFilteredData(filteredData) {
+//     const versionCounts = {};
+//     const countryCounts = {};
 
-    filteredData.map(item => {
-		const versionRes = (versionCounts[item.app_ver] || 0) + item.days[0]
-        const countryRes = (countryCounts[item.country] || 0) + item.days[0]
+//     filteredData.map(item => {
+// 		const versionRes = (versionCounts[item.app_ver] || 0) + item.days[0]
+//         const countryRes = (countryCounts[item.country] || 0) + item.days[0]
 
-        versionCounts[item.app_ver] = versionRes
-        countryCounts[item.country] = countryRes
-    });
+//         versionCounts[item.app_ver] = versionRes
+//         countryCounts[item.country] = countryRes
+//     });
 
-	console.group()
-    console.log('Version Filter:', versionCounts);
-    Object.keys(versionCounts).forEach(version => {
-        console.log(`${version} (${versionCounts[version]})`);
-    });
+// 	console.group()
+//     console.log('Version Filter:', versionCounts);
+//     Object.keys(versionCounts).forEach(version => {
+//         console.log(`${version} (${versionCounts[version]})`);
+//     });
 
-    console.log('\nCountry Filter:');
-    Object.keys(countryCounts).forEach(country => {
-        console.log(`${country} (${countryCounts[country]})`);
-    });
-	console.groupEnd()
-}
+//     console.log('\nCountry Filter:');
+//     Object.keys(countryCounts).forEach(country => {
+//         console.log(`${country} (${countryCounts[country]})`);
+//     });
+// 	console.groupEnd()
+// }
 
 // Sample filter scenarios
-const filteredData1 = filterData('All', 'All', 'All');
-displayFilteredData(filteredData1);
+// const filteredData1 = filterData('All', 'All', 'All');
+// displayFilteredData(filteredData1);
 
-const filteredData2 = filterData('1', '1.0.0', 'All');
-displayFilteredData(filteredData2);
+// const filteredData2 = filterData('1', '1.0.0', 'All');
+// displayFilteredData(filteredData2);
 
-const filteredData3 = filterData('1', 'All', 'Samoa');
-displayFilteredData(filteredData3);
+// const filteredData3 = filterData('1', 'All', 'Samoa');
+// displayFilteredData(filteredData3);
 
-const filteredData4 = filterData('2', 'All', 'Samoa');
-displayFilteredData(filteredData4);
+// const filteredData4 = filterData('2', 'All', 'Samoa');
+// displayFilteredData(filteredData4);
 
-const filteredData5 = filterData('All', 'All', 'Latvia');
-displayFilteredData(filteredData5);
+// const filteredData5 = filterData('All', 'All', 'Latvia');
+// displayFilteredData(filteredData5);
 
 function setVersionFilter() {
 	$filterByVersion = '9.0.0'
@@ -116,9 +118,8 @@ function setVersionFilter() {
 function setCountryFilter() {
 	$filterByCountry = 'Luxembourg'
 }
-// function getData() {
-// 	console.log($test)
-// }
+$: console.log('VERSIONS', $versionCounts)
+$: console.log('COUNTRIES', $countryCounts)
 </script>
 
 <Header />
@@ -128,6 +129,7 @@ function setCountryFilter() {
 	<button on:click={() => setCountryFilter('Luxembourg')}>SET LUX</button>
 	<!-- <button on:click={() => getData()}>TEST</button> -->
 	{JSON.stringify($filteredRetention)}
+	<!-- {versionCountryCounts} -->
 </main>
 <Footer />
 
