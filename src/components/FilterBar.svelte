@@ -1,32 +1,26 @@
 <script>
-import Select from 'svelte-select';
-
-import { gamesSelectItems } from '../store'
-
+  import { filterById, filterByVersion, filterByCountry } from '../store';
+  import GameSelect from './selects/GameSelect.svelte';
+  import VersionSelect from './selects/VersionSelect.svelte';
+  import CountrySelect from './selects/CountrySelect.svelte';
 </script>
 
-<Select items={$gamesSelectItems} label="Labels" placeholder="Select a game..." >
-    <div slot="item" class="item" let:item let:index>
-        {#if index > 0}
-            <img src={item.icon} alt={item.label} class="item-icon" />
-        {/if}
-        {item.label}
-    </div>
-</Select>
+<div class="filters-container">
+<GameSelect />
+<VersionSelect />
+<CountrySelect />
+</div>
 
-
+<div class="debug">
+    ID: {$filterById}
+    VER: {$filterByVersion}
+    COUNTRY: {$filterByCountry}
+</div>
 <style>
-    .item {
+    .filters-container {
         display: flex;
-        align-items: center;
-        gap: 0 .5rem;
+        gap: 0 2rem;
         width: 100%;
-    }
-
-    .item-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        object-fit: cover;
-        border-radius: .25rem;
+        margin-bottom: 1rem;
     }
 </style>
