@@ -1,10 +1,11 @@
 <script>
 	import { onMount } from "svelte";
 
-	import { gamesData, retentionData, gamesList } from './store'
+	import { gamesData, retentionData, gamesSelectItems } from './store'
 
-	import Header from "./components/Header.svelte";
-	import Footer from "./components/Footer.svelte";
+	import Header from "./components/Header.svelte"
+	import Footer from "./components/Footer.svelte"
+	import FilterBar from './components/FilterBar.svelte'
 
 	const DATA_GAMES = "https://storage.googleapis.com/estoty-temp/games.json"
 	const DATA_RETENTION = "https://storage.googleapis.com/estoty-temp/retention.json"
@@ -28,20 +29,19 @@
 </script>
 
 <Header />
-
 <main>
-	{#each $gamesList as game}
-		<div><img src={game.icon} /> {game.name} ({game.app_id})</div>
-	{/each}
+	<FilterBar />
 </main>
-
 <Footer />
 
 <style>
 	main {
-		max-width: 960px;
-		margin: 40px auto;
+		display:flex;
+		flex-grow: 1;
+		text-align: center;
+		align-items: end;
+		max-width: 60rem;
+		margin: 6.25rem auto;
 	}
-
 </style>
 
