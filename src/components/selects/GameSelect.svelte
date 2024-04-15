@@ -1,15 +1,16 @@
 <script>
 import Select from 'svelte-select';
 
-import { gamesSelectItems, filterById } from '../../store'
+import { gamesSelectItems, filterById, resetFilters} from '../../store'
 
 function handleChange(event) {
+    resetFilters()
     filterById.set(event.detail.value)
 }
 </script>
 
 <div>
-    Games
+    Game
     <Select
         items={$gamesSelectItems}
         value={$filterById}
