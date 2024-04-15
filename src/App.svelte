@@ -9,13 +9,11 @@
 		versionCounts,
 		countryCounts,
 		countDevices,
-    	resetFilters,
 	} from './store'
 
 	import Header from "./components/Header.svelte"
 	import Footer from "./components/Footer.svelte"
 	import FilterBar from './components/FilterBar.svelte'
-  	import ContentTable from "./components/ContentTable.svelte";
   	import ViewBar from "./components/ViewBar.svelte";
 
 	const DATA_GAMES = "https://storage.googleapis.com/estoty-temp/games.json"
@@ -44,27 +42,17 @@
 			console.log('COUNT DEVICES', $versionCounts, $countryCounts)
 		})
 	})
-
-
-
-	$: console.log('VERSIONS', $versionCounts)
-	$: console.log('COUNTRIES', $countryCounts)
 </script>
 
 <Header />
 <main>
 	<FilterBar />
 </main>
-
-	<ViewBar />		
-
-
+<ViewBar />		
 <Footer />
 
 <style>
-	main {
-		display:flex;
-		text-align: center;
+	main {	
 		max-width: 60rem;
 		margin: 6.25rem auto;
 	}

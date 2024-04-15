@@ -7,23 +7,54 @@
 </script>
 
 <div class="filters-container">
-<div>
-    <GameSelect />
-</div>
-<VersionSelect />
-<CountrySelect />
-<div class="button"><Button  text ="RESET" handleClick={() => resetFilters()}>WATAFAAAK</Button></div>
-</div>
-
-
-<style>
+    <div class="select-container">
+      <GameSelect />
+    </div>
+    <div class="select-container">
+      <VersionSelect />
+    </div>
+    <div class="select-container">
+      <CountrySelect />
+    </div>
+    <div class="button-container">
+      <Button text="RESET" handleClick={() => resetFilters()}>Reset</Button>
+    </div>
+  </div>
+  
+  <style>
     .filters-container {
-        display: flex;
-        gap: 0 2rem;
-        width: 100%;
-        margin-bottom: 1rem;
+      display: flex;
+      gap: 0 2rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      z-index: 2;
     }
-    .button {
-        display: block;
+  
+    .select-container {
+      position: relative;
+      width: 300px; /* Adjust width as needed */
     }
-</style>
+  
+    .select-container select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      appearance: none; /* Remove default dropdown arrow */
+      background-color: #fff;
+      font-size: 1rem;
+    }
+  
+    .select-container::after {
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  
+    .button-container {
+      margin-top: auto; /* Align the button container to the bottom */
+    }
+  </style>

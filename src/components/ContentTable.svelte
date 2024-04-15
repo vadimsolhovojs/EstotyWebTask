@@ -48,7 +48,7 @@ function calculateRetentionPercentage(day, entry) {
     .freeze {
         position: sticky;
         background-color: #f0f0f0; 
-        z-index: 1; 
+        z-index: 0.5; 
     }
     .freeze-version {
         left: 0; 
@@ -62,10 +62,9 @@ function calculateRetentionPercentage(day, entry) {
     }
     .freeze-header {
         top: 0; 
-        z-index: 2;
+        z-index: 1;
     }
     th, td {
-    
         padding: 8px;
         text-align: center;
     }

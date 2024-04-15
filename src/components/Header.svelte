@@ -1,6 +1,6 @@
 <header>
     <h1 class="image-container">
-        <svg src="/img/logo.svg" alt="Image 1" class="image" />
+        <img src="/img/logo.svg" alt="Image 1" class="image" />
     </h1>
 </header>
 

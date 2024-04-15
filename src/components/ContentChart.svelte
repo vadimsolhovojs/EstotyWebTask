@@ -44,15 +44,14 @@
         }
       };
   
-      // Create chart if not already created
-      if (!chart) {
-        const ctx = document.getElementById('chart').getContext('2d');
-        chart = new Chart(ctx, chartConfig);
-      } else {
-        // Update chart data
-        chart.data.datasets = chartData;
-        chart.update();
+      // Destroy existing chart if it exists
+      if (chart) {
+        chart.destroy();
       }
+  
+      // Create new chart
+      const ctx = document.getElementById('chart').getContext('2d');
+      chart = new Chart(ctx, chartConfig);
     }
   
     // Create or update chart on mount and when filteredRetention changes
@@ -72,14 +71,13 @@
   </script>
   
   <div class="chart-container">
-    <canvas id="chart" width="800" height="600"></canvas>
+    <canvas id="chart" width=100% ></canvas>
   </div>
   
   <style>
     .chart-container {
-      width: 100%;
-      height: 600px;
-      margin: auto;
+     
+      height: 100%;
       position: relative;
     }
   </style>
