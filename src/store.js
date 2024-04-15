@@ -41,20 +41,7 @@ export const gamesSelectItems = derived(gamesList, ($gamesList) => {
     return []
 })
 
-export const versionSelectItems = derived(retentionData, ($retentionData) => {
-    if ($retentionData.length) {
-        const result = [{ value: FILTER_DEFAULT, label: 'All' }]
-        for (const game of $retentionData) {
-            result.push({
-                value: game.app_id,
-                label: game.app_ver,
-            })
-        }
-        return result
-    }
-    
-    return []
-})
+
 
 export const filteredRetention = derived(
     [retentionData, filterById, filterByVersion, filterByCountry],
@@ -75,9 +62,10 @@ export const filteredRetention = derived(
             filteredData = filteredData.filter(item => 
                 item.country === $filterByCountry);
         }
-
+        console.log(filteredData)
         return filteredData;
 })
+
 
 export const versionCounts = derived(
     [filteredRetention], 
@@ -88,7 +76,7 @@ export const versionCounts = derived(
     
         versions[item.app_ver] = versionRes
     })
-    
+    console.log('HALO', versions)
     return Object.entries(versions)
 })
 

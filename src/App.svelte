@@ -17,6 +17,7 @@
 	import Header from "./components/Header.svelte"
 	import Footer from "./components/Footer.svelte"
 	import FilterBar from './components/FilterBar.svelte'
+  import ContentTable from "./components/ContentTable.svelte";
 
 	const DATA_GAMES = "https://storage.googleapis.com/estoty-temp/games.json"
 	const DATA_RETENTION = "https://storage.googleapis.com/estoty-temp/retention.json"
@@ -128,9 +129,12 @@ $: console.log('COUNTRIES', $countryCounts)
 	<button on:click={() => setVersionFilter('9.0.0')}>SET 9.0.0</button>
 	<button on:click={() => setCountryFilter('Luxembourg')}>SET LUX</button>
 	<!-- <button on:click={() => getData()}>TEST</button> -->
-	{JSON.stringify($filteredRetention)}
+	<!-- {JSON.stringify($filteredRetention)} -->
 	<!-- {versionCountryCounts} -->
+	
 </main>
+<ContentTable />
+		
 <Footer />
 
 <style>
