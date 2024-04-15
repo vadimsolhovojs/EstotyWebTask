@@ -21,6 +21,7 @@
     "chart.js": "^4.4.2",
     "sirv-cli": "^2.0.0",
     "svelte": "^4.2.13",
+    "svelte-chartjs": "^3.1.5",
     "svelte-select": "^5.8.3",
     "svelte-table": "^0.6.3"
   }

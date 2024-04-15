@@ -32,34 +32,41 @@ function calculateRetentionPercentage(day, entry) {
 </table>
 
 <style>
+    
+    th {
+        background-color: #f2f2f2;
+    }
     .scroll {
-      width: 70%; 
-      height: 400px; 
-      overflow: auto; 
-      display: block; 
-      margin-left: 15%; 
+        width: 70%; 
+        height: 400px; 
+        overflow: auto; 
+        display: block; 
+        margin: auto; 
+        border-collapse: collapse;
+        border: 1px solid #ddd
     }
     .freeze {
-      position: sticky;
-      background-color: #f0f0f0; 
-      z-index: 1; 
+        position: sticky;
+        background-color: #f0f0f0; 
+        z-index: 1; 
     }
     .freeze-version {
-      left: 0; 
-      width: 100px
+        left: 0; 
+        width: 75px;
+        border-right: 1px solid #ddd 
     }
     .freeze-country {
-      left: 78px; 
-      width: 140px;
-      text-wrap: nowrap;
+        left: 75px; 
+        width: 140px;
+        text-wrap: nowrap;
     }
     .freeze-header {
-      top: 0; 
-      z-index: 2;
+        top: 0; 
+        z-index: 2;
     }
     th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
+    
+        padding: 8px;
+        text-align: center;
     }
-  </style>
+</style>

@@ -32,11 +32,4 @@ function handleChange(event) {
         gap: 0 .5rem;
         width: 100%;
     }
-
-    .item-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        object-fit: cover;
-        border-radius: .25rem;
-    }
 </style>

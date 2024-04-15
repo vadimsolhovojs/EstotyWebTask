@@ -1,26 +1,29 @@
 <script>
-  import { filterById, filterByVersion, filterByCountry } from '../store';
+  import { resetFilters } from '../store';
   import GameSelect from './selects/GameSelect.svelte';
   import VersionSelect from './selects/VersionSelect.svelte';
   import CountrySelect from './selects/CountrySelect.svelte';
+  import Button from './Button.svelte';
 </script>
 
 <div class="filters-container">
-<GameSelect />
+<div>
+    <GameSelect />
+</div>
 <VersionSelect />
 <CountrySelect />
+<div class="button"><Button  text ="RESET" handleClick={() => resetFilters()}>WATAFAAAK</Button></div>
 </div>
 
-<div class="debug">
-    ID: {$filterById}
-    VER: {$filterByVersion}
-    COUNTRY: {$filterByCountry}
-</div>
+
 <style>
     .filters-container {
         display: flex;
         gap: 0 2rem;
         width: 100%;
         margin-bottom: 1rem;
+    }
+    .button {
+        display: block;
     }
 </style>

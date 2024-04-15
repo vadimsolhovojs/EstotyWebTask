@@ -18,29 +18,37 @@ export const filterByCountry = writable(FILTER_DEFAULT)
 export const versionCounts = writable({})
 export const countryCounts = writable({})
 
+export function countDevices() {
+    const filteredData = get(retentionDataById)
+    const versions = {}
+    const countries = {}
+
+    filteredData.map(item => {
+        const versionRes = (versions[item.app_ver] || 0) + item.days[0]
+        const countryRes = (countries[item.country] || 0) + item.days[0]
+
+        versions[item.app_ver] = versionRes
+        countries[item.country] = countryRes
+    })
+
+    versionCounts.set(versions)
+    countryCounts.set(countries)
+
+    return { versions, countries }
+}
+
+export function resetFilters() {
+    filterById.set(FILTER_DEFAULT)
+    filterByVersion.set(FILTER_DEFAULT)
+    filterByCountry.set(FILTER_DEFAULT)
+}
+
 export const gamesList = derived(gamesData, ($gamesData) => {
     if ($gamesData.length) {
         return $gamesData.map((game) => game).sort(gamesSort)
     }
     return []
 })
-
-export const gamesSelectItems = derived(gamesList, ($gamesList) => {
-    if ($gamesList.length) {
-        const result = [SELECT_DEFAULT_VALUE]
-        for (const game of $gamesList) {
-            result.push({
-                value: game.app_id,
-                label: game.name,
-                icon: game.icon,
-            })
-        }
-        return result
-    }
-    return []
-})
-
-
 
 export const filteredRetention = derived(
     [retentionData, filterById, filterByVersion, filterByCountry],
@@ -73,30 +81,20 @@ export const retentionDataById = derived([retentionData, filterById], ([$retenti
     return []
 })
 
-export function countDevices() {
-    const filteredData = get(retentionDataById)
-    const versions = {}
-    const countries = {}
-
-    filteredData.map(item => {
-        const versionRes = (versions[item.app_ver] || 0) + item.days[0]
-        const countryRes = (countries[item.country] || 0) + item.days[0]
-
-        versions[item.app_ver] = versionRes
-        countries[item.country] = countryRes
-    })
-
-    versionCounts.set(versions)
-    countryCounts.set(countries)
-
-    return { versions, countries }
-}
-
-export function resetFilters() {
-    filterById.set(FILTER_DEFAULT)
-    filterByVersion.set(FILTER_DEFAULT)
-    filterByCountry.set(FILTER_DEFAULT)
-}
+export const gamesSelectItems = derived(gamesList, ($gamesList) => {
+    if ($gamesList.length) {
+        const result = [SELECT_DEFAULT_VALUE]
+        for (const game of $gamesList) {
+            result.push({
+                value: game.app_id,
+                label: game.name,
+                icon: game.icon,
+            })
+        }
+        return result
+    }
+    return []
+})
 
 export const versionSelectItems = derived(
     [versionCounts, filterById],

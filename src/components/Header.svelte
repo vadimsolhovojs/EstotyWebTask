@@ -1,6 +1,6 @@
 <header>
     <h1 class="image-container">
-        <img src="/img/logo.svg" alt="Image 1" class="image" />
+        <svg src="/img/logo.svg" alt="Image 1" class="image" />
     </h1>
 </header>
 
@@ -28,7 +28,7 @@
         opacity: 0;
     }
 
-    .image-container:hover .image[data-alt-src] {
+    /* .image-container:hover .image[data-alt-src] {
         opacity: 1;
-    }
+    } */
 </style>
