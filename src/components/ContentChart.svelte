@@ -54,21 +54,33 @@
       chart = new Chart(ctx, chartConfig);
     }
   
-    // Create or update chart on mount and when filteredRetention changes
-    onMount(() => {
-      filteredRetention.subscribe(value => {
-        renderChart(value);
-      });
+  // Create or update chart on mount and when filteredRetention changes
+  onMount(() => {
+    filteredRetention.subscribe(value => {
+      renderChart(value);
     });
-  
-    // Cleanup on component destroy
-    onDestroy(() => {
-      if (chart) {
-        chart.destroy();
-        chart = null;
-      }
-    });
-  </script>
+
+    // Resize chart when window size changes
+    window.addEventListener('resize', handleResize);
+  });
+
+  // Cleanup on component destroy
+  onDestroy(() => {
+    if (chart) {
+      chart.destroy();
+      chart = null;
+    }
+    window.removeEventListener('resize', handleResize);
+  });
+
+  // Function to handle window resize
+  function handleResize() {
+    if (chart) {
+      chart.resize();
+    }
+  }
+</script>
+
   
   <div class="chart-container">
     <canvas id="chart" width=100% ></canvas>

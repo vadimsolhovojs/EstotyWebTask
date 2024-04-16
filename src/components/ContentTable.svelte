@@ -22,7 +22,7 @@ function calculateRetentionPercentage(day, entry) {
     {#each $filteredRetention as entry}
       <tr>
         <td class="freeze freeze-version">{entry.app_ver}</td>
-        <td class="freeze freeze-country">{trimName(entry.country)}</td>
+        <td class="freeze freeze-country" title={entry.country}>{trimName(entry.country)}</td>
         {#each Array.from({ length: 91 }, (_, i) => i) as day}
           <td>{calculateRetentionPercentage(day, entry)}%</td>
         {/each}
@@ -32,13 +32,15 @@ function calculateRetentionPercentage(day, entry) {
 </table>
 
 <style>
-    
+    tr {
+        height: 2.5rem;
+    }
     th {
         background-color: #f2f2f2;
     }
     .scroll {
-        width: 70%; 
-        height: 400px; 
+        max-width: 1230px;
+        max-height: 800px; 
         overflow: auto; 
         display: block; 
         margin: auto; 
@@ -53,11 +55,11 @@ function calculateRetentionPercentage(day, entry) {
     .freeze-version {
         left: 0; 
         width: 75px;
-        border-right: 1px solid #ddd 
+       
     }
     .freeze-country {
-        left: 75px; 
-        width: 140px;
+        left: 74px; 
+        width: 12px;
         text-wrap: nowrap;
     }
     .freeze-header {
@@ -66,6 +68,6 @@ function calculateRetentionPercentage(day, entry) {
     }
     th, td {
         padding: 8px;
-        text-align: center;
+        text-align: center;  
     }
 </style>

@@ -1,15 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
-	import { 
-		gamesData,
-		retentionData,
-		filteredRetention,
-		filterById,
-		versionCounts,
-		countryCounts,
-		countDevices,
-	} from './store'
+	import { gamesData, retentionData } from './store'
 
 	import Header from "./components/Header.svelte"
 	import Footer from "./components/Footer.svelte"
@@ -21,40 +13,24 @@
 
 	onMount(async () => {
 		fetch(DATA_GAMES).then((response) => response.json()).then((data) => {
-			// console.log('GAMES', data)
 			gamesData.set(data)
 		}).catch((error) => {
 			console.error(error)
 			return []
 		})
 		fetch(DATA_RETENTION).then((response) => response.json()).then((data) => {
-			// console.log('RETENTION', data)
 			retentionData.set(data)
 		}).catch((error) => {
 			console.error(error)
 			return []
-		})
-
-		filteredRetention.subscribe(() => {
-			if ($filterById !== 'All') {
-				countDevices()
-			}
-			console.log('COUNT DEVICES', $versionCounts, $countryCounts)
-		})
+		})	
 	})
 </script>
 
 <Header />
-<main>
-	<FilterBar />
-</main>
+<FilterBar />
 <ViewBar />		
 <Footer />
 
-<style>
-	main {	
-		max-width: 60rem;
-		margin: 6.25rem auto;
-	}
-</style>
+<style></style>
 

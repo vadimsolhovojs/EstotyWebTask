@@ -81,6 +81,12 @@ export const retentionDataById = derived([retentionData, filterById], ([$retenti
     return []
 })
 
+filteredRetention.subscribe(() => {
+    if (filterById !== FILTER_DEFAULT) {
+        countDevices()
+    }
+})
+
 export const gamesSelectItems = derived(gamesList, ($gamesList) => {
     if ($gamesList.length) {
         const result = [SELECT_DEFAULT_VALUE]

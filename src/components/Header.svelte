@@ -1,34 +1,28 @@
+<script>
+    import Logo from './Logo.svelte';
+</script>
+
 <header>
-    <h1 class="image-container">
-        <img src="/img/logo.svg" alt="Image 1" class="image" />
-    </h1>
+    <div class="logo-container">
+        <div>
+            <a href="https://estoty.com/" target="_blank">
+                <Logo />
+            </a>
+        </div>
+    </div>
 </header>
 
 <style>
-    header{
+    header {
         background: #120b0b15;
-        padding: 20px;
+        width: 100%
     }
 
-    h1{
-        margin: 0;
-        text-align: center;
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 4.5rem;
     }
-
-    .image-container {
-        position: relative;
-    }
-
-    .image {
-        width: 140px;
-        transition: opacity 0.5s ease;
-    }
-
-    .image-container:hover .image {
-        opacity: 0;
-    }
-
-    /* .image-container:hover .image[data-alt-src] {
-        opacity: 1;
-    } */
 </style>

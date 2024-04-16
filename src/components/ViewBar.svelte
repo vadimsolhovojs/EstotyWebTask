@@ -1,5 +1,6 @@
 <script>  
 import ContentTable from "./ContentTable.svelte"
+import ContentFlexboxTable from "./ContentFlexboxTable.svelte"
 import ContentChart from "./ContentChart.svelte"
 import Button from './Button.svelte';
 
@@ -12,10 +13,10 @@ function toggleView(newView) {
 
 <div class="button-container">
     <div>
-        <Button text="Table" handleClick={() => toggleView('table')} />
+        <Button text="Table View" handleClick={() => toggleView('table')} />
     </div>
     <div>
-        <Button text="Chart" handleClick={() => toggleView('chart')} />
+        <Button text="Chart View" handleClick={() => toggleView('chart')} />
     </div>
 </div>
 
@@ -28,20 +29,12 @@ function toggleView(newView) {
 </div>
 
 
-
-
 <style>
-    /* Customize button styles */
-    .view-bar {
-        text-align: center; /* Center align the buttons */
-        width: 100%;
-        overflow-x: auto;
-    }
     .button-container {
         display: flex;
-        justify-content: center; /* Center align the buttons horizontally */
+        justify-content: center;
         gap: 0 2rem;
-        width: 100%;
+        margin-top: 2rem;
         margin-bottom: 1rem;
     }
 </style>
