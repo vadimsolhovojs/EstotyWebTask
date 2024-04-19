@@ -1,18 +1,13 @@
-<script>
-    export let text = '';
-    export let handleClick = () => {};
-</script>
-
 <div class="button-container">
-    <button on:click={handleClick}>{text}</button>
+    <button on:click><slot/></button>
 </div>
 
 <style>
     .button-container {
         display: flex;
-        justify-content: flex-end; /* Align button to the right */
-        align-items: flex-end; /* Align button to the bottom */
-        height: 100%; /* Ensure the container takes up the full height */
+        justify-content: flex-end;
+        align-items: flex-end;
+        height: 100%;
     }
 
     button {

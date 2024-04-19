@@ -1,16 +1,15 @@
 <script>
-import Select from 'svelte-select';
+    import Select from 'svelte-select';
 
-import { versionSelectItems, filterByVersion } from '../../store'
+    import { versionSelectItems, filterByVersion } from '../../store'
 
-
-function handleChange(event) {
-    filterByVersion.set(event.detail.value)
-}
+    function handleChange(event) {
+        filterByVersion.set(event.detail.value)
+    }
 </script>
 
 <div>
-    Version
+    <div class="label">Version</div>
     <Select
         items={$versionSelectItems}
         value={$filterByVersion}
@@ -20,3 +19,9 @@ function handleChange(event) {
         showChevron
     />
 </div>
+
+<style>
+    .label {
+        margin-bottom: 0.25rem;
+    }
+</style>

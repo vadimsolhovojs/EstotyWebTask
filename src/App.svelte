@@ -2,28 +2,19 @@
 	import { onMount } from "svelte";
 
 	import { gamesData, retentionData } from './store'
+	import { getData } from './services/api'
 
-	import Header from "./components/Header.svelte"
-	import Footer from "./components/Footer.svelte"
-	import FilterBar from './components/FilterBar.svelte'
-  	import ViewBar from "./components/ViewBar.svelte";
+	import Header from "./components/layout/Header.svelte"
+	import Footer from "./components/layout/Footer.svelte"
+	import FilterBar from './components/layout/FilterBar.svelte'
+  	import ViewBar from "./components/layout/ViewBar.svelte";
 
-	const DATA_GAMES = "https://storage.googleapis.com/estoty-temp/games.json"
-	const DATA_RETENTION = "https://storage.googleapis.com/estoty-temp/retention.json"
+	const GAMES_ENDPOINT = "https://storage.googleapis.com/estoty-temp/games.json"
+	const RETENTION_ENDPOINT = "https://storage.googleapis.com/estoty-temp/retention.json"
 
 	onMount(async () => {
-		fetch(DATA_GAMES).then((response) => response.json()).then((data) => {
-			gamesData.set(data)
-		}).catch((error) => {
-			console.error(error)
-			return []
-		})
-		fetch(DATA_RETENTION).then((response) => response.json()).then((data) => {
-			retentionData.set(data)
-		}).catch((error) => {
-			console.error(error)
-			return []
-		})	
+		getData(GAMES_ENDPOINT, gamesData)
+		getData(RETENTION_ENDPOINT, retentionData)
 	})
 </script>
 
@@ -31,6 +22,3 @@
 <FilterBar />
 <ViewBar />		
 <Footer />
-
-<style></style>
-

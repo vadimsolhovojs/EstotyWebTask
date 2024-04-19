@@ -1,16 +1,16 @@
 <script>
-import Select from 'svelte-select';
+    import Select from 'svelte-select';
 
-import { gamesSelectItems, filterById, resetFilters} from '../../store'
+    import { gamesSelectItems, filterById, resetFilters} from '../../store'
 
-function handleChange(event) {
-    resetFilters()
-    filterById.set(event.detail.value)
+    function handleChange(event) {
+        resetFilters()
+        filterById.set(event.detail.value)
 }
 </script>
 
 <div>
-    Game
+    <div class="label">Game</div>
     <Select
         items={$gamesSelectItems}
         value={$filterById}
@@ -28,7 +28,6 @@ function handleChange(event) {
     </Select>
 </div>
 
-
 <style>
     .item {
         display: flex;
@@ -42,5 +41,9 @@ function handleChange(event) {
         height: 2.5rem;
         object-fit: cover;
         border-radius: .25rem;
+    }
+
+    .label {
+        margin-bottom: 0.25rem;
     }
 </style>

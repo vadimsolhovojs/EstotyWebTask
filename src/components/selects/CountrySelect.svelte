@@ -1,15 +1,15 @@
 <script>
-import Select from 'svelte-select';
+    import Select from 'svelte-select';
 
-import { countrySelectItems, filterByCountry } from '../../store'
+    import { countrySelectItems, filterByCountry } from '../../store'
 
-function handleChange(event) {
-    filterByCountry.set(event.detail.value)
-}
+    function handleChange(event) {
+        filterByCountry.set(event.detail.value)
+    }
 </script>
     
 <div>
-    Country
+    <div class="label">Country</div>
     <Select
         items={$countrySelectItems}
         value={$filterByCountry}
@@ -24,12 +24,15 @@ function handleChange(event) {
     </Select>
 </div>
 
-
 <style>
     .item {
         display: flex;
         align-items: center;
         gap: 0 .5rem;
         width: 100%;
+    }
+
+    .label {
+        margin-bottom: 0.25rem;
     }
 </style>

@@ -1,23 +1,21 @@
 <footer>
     <div class="item-container">
-        <div class="copyright">Copyright Vadims Olhovojs</div>
+        <div class="copyright">Copyright</div>
     </div>
 </footer>
 
 <style>
     footer {
-        margin-top: 3rem;
+        margin-top: auto;
         text-align: center; 
-        bottom: 0;
         position: relative;
         width: 100%;
-        z-index: 999; /* Ensure footer is above other content */
     }
 
     .item-container {
-        bottom: 0;
+        margin-top: 3rem;
     }
-
+    
     .copyright {
         color: #aaa;
         font-size: 14px;

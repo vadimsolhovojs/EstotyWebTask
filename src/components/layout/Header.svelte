@@ -1,5 +1,5 @@
 <script>
-    import Logo from './Logo.svelte';
+    import Logo from '../Logo.svelte'
 </script>
 
 <header>
@@ -17,7 +17,7 @@
         background: #120b0b15;
         width: 100%
     }
-
+    
     .logo-container {
         display: flex;
         justify-content: center;

@@ -1,11 +1,10 @@
 <script>
-import { filteredRetention } from '../store.js'
-import { trimName } from '../../utils/formatting.js';
+import { filteredRetention, countDays } from '../../store.js'
+import { trimName } from '../../../utils/formatting.js'
 
 function calculateRetentionPercentage(day, entry) {
     return Math.round((entry.days[day] / entry.days[0]) * 100)
 }
-
 </script>
 
 <table class="scroll">
@@ -13,7 +12,7 @@ function calculateRetentionPercentage(day, entry) {
     <tr class="freeze freeze-header">
         <th class="freeze freeze-version">Version</th>
         <th class="freeze freeze-country">Country</th>
-      {#each Array.from({ length: 91 }, (_, i) => i) as day}
+      {#each $countDays as day}
         <th>D{day}</th>
       {/each}
     </tr>
@@ -23,8 +22,8 @@ function calculateRetentionPercentage(day, entry) {
       <tr>
         <td class="freeze freeze-version">{entry.app_ver}</td>
         <td class="freeze freeze-country" title={entry.country}>{trimName(entry.country)}</td>
-        {#each Array.from({ length: 91 }, (_, i) => i) as day}
-          <td>{calculateRetentionPercentage(day, entry)}%</td>
+        {#each $countDays as index}
+          <td>{calculateRetentionPercentage(index, entry)}%</td>
         {/each}
       </tr>
     {/each}
@@ -35,39 +34,46 @@ function calculateRetentionPercentage(day, entry) {
     tr {
         height: 2.5rem;
     }
+
     th {
         background-color: #f2f2f2;
     }
+
     .scroll {
-        max-width: 1230px;
-        max-height: 800px; 
+        max-width: 76.825rem;
+        max-height: 50rem; 
         overflow: auto; 
         display: block; 
         margin: auto; 
         border-collapse: collapse;
         border: 1px solid #ddd
     }
+
     .freeze {
         position: sticky;
         background-color: #f0f0f0; 
         z-index: 0.5; 
     }
+
     .freeze-version {
         left: 0; 
-        width: 75px;
+        width: 4.6875rem;
        
     }
+
     .freeze-country {
-        left: 74px; 
-        width: 12px;
+        left: 4.625rem; 
+        width: 0.75rem;
         text-wrap: nowrap;
     }
+
     .freeze-header {
         top: 0; 
         z-index: 1;
     }
+    
     th, td {
-        padding: 8px;
+        padding: 0.5rem;
         text-align: center;  
     }
 </style>

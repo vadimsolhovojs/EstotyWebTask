@@ -1,22 +1,21 @@
 <script>  
-import ContentTable from "./ContentTable.svelte"
-import ContentFlexboxTable from "./ContentFlexboxTable.svelte"
-import ContentChart from "./ContentChart.svelte"
-import Button from './Button.svelte';
+import ContentTable from '../views/ContentTable.svelte'
+import ContentChart from '../views/ContentChart.svelte'
+import Button from '../Button.svelte'
 
 let view = 'table'
 
 function toggleView(newView) {
-    view = newView;
+    view = newView
 }
 </script>
 
 <div class="button-container">
     <div>
-        <Button text="Table View" handleClick={() => toggleView('table')} />
+        <Button on:click={() => toggleView('table')}>Table View</Button>
     </div>
     <div>
-        <Button text="Chart View" handleClick={() => toggleView('chart')} />
+        <Button on:click={() => toggleView('chart')}>Chart View</Button>
     </div>
 </div>
 
@@ -27,7 +26,6 @@ function toggleView(newView) {
     <ContentChart />
 {/if}
 </div>
-
 
 <style>
     .button-container {

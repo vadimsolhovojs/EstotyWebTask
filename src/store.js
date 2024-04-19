@@ -9,12 +9,10 @@ const SELECT_DEFAULT_VALUE = { value: FILTER_DEFAULT, label: 'All' }
 export const gamesData = writable([])
 export const retentionData = writable([])
 
-// Filters
 export const filterById = writable(FILTER_DEFAULT)
 export const filterByVersion = writable(FILTER_DEFAULT)
 export const filterByCountry = writable(FILTER_DEFAULT)
 
-// Counters
 export const versionCounts = writable({})
 export const countryCounts = writable({})
 
@@ -57,28 +55,31 @@ export const filteredRetention = derived(
 
         if ($filterById !== FILTER_DEFAULT) {
             filteredData = $retentionData.filter(item => 
-                item.app_id === $filterById);
+                item.app_id === $filterById)
         }
 
         if ($filterByVersion !== FILTER_DEFAULT) {
             filteredData = filteredData.filter(item => 
-                item.app_ver === $filterByVersion);
+                item.app_ver === $filterByVersion)
         }
 
         if ($filterByCountry !== FILTER_DEFAULT) {
             filteredData = filteredData.filter(item => 
-                item.country === $filterByCountry);
+                item.country === $filterByCountry)
         }
-        console.log(filteredData)
-        return filteredData;
+        return filteredData
 })
 
 export const retentionDataById = derived([retentionData, filterById], ([$retentionData, $filterById]) => {
     if ($filterById !== FILTER_DEFAULT) {
         return $retentionData.filter(item => 
-            item.app_id === $filterById);
+            item.app_id === $filterById)
     }
     return []
+})
+
+export const countDays = derived([filteredRetention], ([$filteredRetention]) => {
+    return Array.from({ length: Math.max(...$filteredRetention.map(entry => entry.days.length))}, (_, i) => i)
 })
 
 filteredRetention.subscribe(() => {
